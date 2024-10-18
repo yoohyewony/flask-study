@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPU Usage Monitor</title>
+    <!-- 페이지가 10초마다 자동으로 새로고침 되도록 설정 -->
+    <meta http-equiv="refresh" content="10">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">GPU Usage Monitor (Auto Refresh)</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Total Memory</th>
+                <th>Used Memory</th>
+                <th>Free Memory</th>
+                <th>Utilization</th>
+                <th>Temperature</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for gpu in gpu_data %}
+                <tr>
+                    <td>{{ gpu.id }}</td>
+                    <td>{{ gpu.name }}</td>
+                    <td>{{ gpu.memory_total }}</td>
+                    <td>{{ gpu.memory_used }}</td>
+                    <td>{{ gpu.memory_free }}</td>
+                    <td>{{ gpu.utilization }}</td>
+                    <td>{{ gpu.temperature }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

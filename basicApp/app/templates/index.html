@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+</head>
+<body>
+    <h1>게시판</h1>
+    <a href="/create">새 글 작성</a>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <a href="/post/{{ post[0] }}">{{ post[1] }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
