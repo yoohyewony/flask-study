@@ -10,7 +10,7 @@
     <ul>
         {% for post in posts %}
         <li>
-            <a href="/post/{{ post[0] }}">{{ post[1] }}</a>
+            <a href="{{ url_for('post', post_id=post[0]) }}">{{ post[1] }}</a>
         </li>
         {% endfor %}
     </ul>
