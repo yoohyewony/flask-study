@@ -16,8 +16,25 @@ spec:
       - name: flask-container
         image: flask-app:latest   # 빌드한 커스텀 이미지 사용
         imagePullPolicy: IfNotPresent
+        command: ["/bin/sh", "-c"]
+        args:
+        - python /app/app.py
         ports:
         - containerPort: 5000
+        volumeMounts:
+        - name: flask-storage
+          mountPath: /mnt/data  # 데이터베이스 저장 경로
+          # mountPath: /app/data
+        - name: flask-code
+          mountPath: /app       # 애플리케이션 코드 경로
+      volumes:
+      - name: flask-storage
+        emptyDir: {}  # 데이터를 Pod 내 임시 저장 (재시작 시 데이터 유실)
+      - name: flask-code
+        hostPath:
+          path: /home/docai/hyewon/study/basicApp/app  # 로컬 머신의 Flask 애플리케이션 디렉토리로 변경
+          type: Directory
+
 ---
 apiVersion: v1
 kind: Service
